@@ -1,15 +1,43 @@
 {
   "name": "react-next-cms",
   "version": "0.1.0",
-  "private": true,
+  "author": "Adrian von Gegerfelt <adrian@designbyadrian.com>",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
+  "keywords": [
+    "next",
+    "next.js",
+    "nextjs",
+    "api",
+    "ssr",
+    "example",
+    "boilerplate",
+    "tailwind",
+    "tailwindcss",
+    "fontawesome"
+  ],
   "dependencies": {
+    "@fontsource/lato": "^4.2.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "axios": "^0.21.1",
+    "classnames": "^2.2.6",
+    "gravatar": "^1.8.1",
+    "isdev": "^1.0.1",
     "next": "10.0.7",
+    "next-auth": "^3.7.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "swr": "^0.4.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.7",
+    "tailwindcss": "^2.0.3"
   }
 }

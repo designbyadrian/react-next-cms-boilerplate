@@ -1,65 +1,37 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { getSession } from 'next-auth/client';
+import Head from 'next/head';
 
-export default function Home() {
+export default function Home({ stats }) {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>React Next CMS Dashboard</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      {stats && (
+        <div className="flex flex-row">
+          {Object.keys(stats).map((key) => (
+            <div key={key} className="flex-1 bg-white shadow m-4 p-4">
+              <h2 className="text-sm text-gray-500 uppercase">{key}</h2>
+              <p className="text-3xl">{stats[key]}</p>
+            </div>
+          ))}
         </div>
-      </main>
+      )}
+    </>
+  );
+}
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+
+  if (!session) {
+    return { redirect: { destination: '/api/auth/signin', permanent: false } };
+  }
+
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/dashboard`);
+  const data = await res.json();
+
+  return { props: { stats: data } };
 }
