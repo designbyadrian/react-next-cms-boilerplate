@@ -9,6 +9,5 @@ export default function handler(req, res) {
     articles: 2,
     awesomeness: getRandomIntInclusive(100, 3000),
     temperatureC: getRandomIntInclusive(0, 100),
-    dateUpdated: new Date(),
   });
 }
