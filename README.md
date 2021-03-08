@@ -4,17 +4,20 @@
 
 **Requirements**
 
-* Node 14.15.5
-
+- Node 14.15.5
 
 ## 🚀 Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -27,13 +30,30 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 ## 📚 Documentation
 
+### 🔐 Authentication
+
+This boilerplate uses a dumb credentials login as an example. To configure for use with other methods like Auth0 and PostgreSQL,[see Authentication in the NextJS docs](https://nextjs.org/docs/authentication)
+
+### 🚢 Deployment
+
+This project is ready to be shipped with [Docker](https://www.docker.com). Connect it to your CI and enjoy! Here's how to test it locally:
+
+```bash
+# build Docker image
+docker build . -t myorg/react-next-cms --build-arg NEXTAUTH_URL=URL_OF_APP
+
+# run the Docker image
+docker run -p 3000:3000 myorg/react-next-cms
+```
+
+For other ways of deployment, [see Deployment in the NextJS docs](https://nextjs.org/docs/deployment)
+
+### 🔎 Read more
+
 To learn more about Next.js, take a look at the following resources:
 
-- [Authentication](https://nextjs.org/docs/authentication) - how to configure authentication methods like Auth0 or PostgreSQL
-- [Deployment](https://nextjs.org/docs/deployment) - various ways to deploy this CMS. A [Docker](https://www.docker.com) file is already included.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
 
 [nextjs]: https://nextjs.org/
 [fontawesome]: https://fontawesome.com
